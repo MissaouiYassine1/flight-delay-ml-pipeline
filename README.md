@@ -51,12 +51,13 @@ streamlit run mon_app.py
 (L'interface s'ouvrira automatiquement dans votre navigateur sur le port 8501)
 
 📁 Structure du projet
-Plaintext
+```plaintext
 ├── mon_api.py               # Serveur Backend (FastAPI + Chargement Spark)
 ├── mon_app.py               # Interface Utilisateur (Streamlit)
 ├── modele_vol_retard/       # Dossier contenant les poids du modèle PySpark MLlib
 ├── requirements.txt         # Liste des librairies Python nécessaires
 └── README.md                # Documentation du projet
+```
 
 ### 👨‍💻 Auteur
 ##### Yassine Missaoui
