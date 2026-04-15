@@ -25,8 +25,9 @@ Assurez-vous d'avoir Python 3.10 installé sur votre machine.
 
 1. **Cloner le dépôt :**
    ```bash
-   git clone [https://github.com/MissaouiYassine1/flight-delay-ml-pipeline.git](https://github.com/MissaouiYassine1/flight-delay-ml-pipeline.git)
-   cd nom-du-repo
+   git clone https://github.com/MissaouiYassine1/flight-delay-ml-pipeline.git
+   cd flight-delay-ml-pipeline
+   
 Installer les dépendances :
 
 Bash
