@@ -1,0 +1,5 @@
+# Ignorer environnement virtuel
+venv/
+
+# Ignorer dossier de modèle
+modele_vol_retard/
