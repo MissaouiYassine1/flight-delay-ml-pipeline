@@ -41,7 +41,7 @@ Dans le premier terminal, exécutez :
 
 Bash
 python mon_api.py
-(L'API sera disponible sur https://www.google.com/search?q=http://127.0.0.1:8000 et la documentation Swagger sur /docs)
+(L'API sera disponible sur http://127.0.0.1:8000 et la documentation Swagger sur /docs)
 
 2. Lancer l'interface (Streamlit) :
 Dans un second terminal, exécutez :
