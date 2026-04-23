@@ -1,5 +1,109 @@
-# Ignorer environnement virtuel
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
 venv/
+ENV/
+env.bak/
+venv.bak/
+pythonenv*
 
-# Ignorer dossier de modèle
-modele_vol_retard/
+# === Distribution / Paquets ===
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# === Tests & Reports ===
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+*.log
+
+# === Notebooks (si Jupyter utilisé) ===
+.ipynb_checkpoints/
+*.ipynb
+
+# === Environnements & configs locaux ===
+.env
+.venv
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# === Fichiers de données (GROS volumes) ===
+*.csv
+*.parquet
+*.snappy.parquet
+*.crc
+*.feather
+*.jsonl
+*.arrow
+
+# === Modele volat retard (données générées/processed) ===
+modele_vol_retard/data/
+modele_vol_retard/metadata/
+
+# === Spark (temporaires, logs, checkpoints) ===
+spark-warehouse/
+metastore_db/
+derby.log
+*.crc
+_SUCCESS
+.part-*
+part-*
+*.tmp
+
+# === Modèles ML sérialisés ===
+*.pkl
+*.joblib
+*.h5
+*.pb
+*.onnx
+*.pmml
+
+# === Rapports générés ===
+*.html
+*.pdf (sauf si versionnés volontairement)
+
+# === Fichiers de logs ===
+logs/
+*.log
+
+# === API / services ===
+nohup.out
+*.pid
+
+# === Dossiers de données brutes (optionnel, sécurisé) ===
+data/raw/
+data/processed/
+*.db
+*.sqlite
+*.sqlite3
+
+# === Backup ou fichiers temporaires système ===
+*.bak
+*.tmp
+*.orig
+*.rej
