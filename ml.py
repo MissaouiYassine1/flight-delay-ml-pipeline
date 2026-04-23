@@ -11,28 +11,39 @@ spark = SparkSession.builder \
     .appName("MonPremierProjetBigData") \
     .getOrCreate()
 
-
-
 from pyspark.ml.feature import VectorAssembler
+from pyspark.ml.classification import LogisticRegression
 
-# On crée des données numériques pour le ML
-data_ml = [
-    (1, 40, 1500, 0), # id_vol, age_pilote, distance_km, cible_retard
-    (2, 55, 2000, 1),
-    (3, 30, 800,  0),
-    (4, 45, 3000, 1)
-]
-cols_ml = ["id_vol", "age_pilote", "distance_km", "cible_retard"]
-df_ml = spark.createDataFrame(data_ml, cols_ml)
+# LECTURE À PARTIR D'UN FICHIER CSV
+# Option 1: Si votre fichier CSV a un en-tête
+df_ml = spark.read.csv("vols_data_massive.csv", header=True, inferSchema=True)
 
-assembleur = VectorAssembler(inputCols=["age_pilote", "distance_km"],outputCol='features')
+# Option 2: Si votre fichier CSV n'a PAS d'en-tête
+#df_ml = spark.read.csv("vols_data_massive.csv", header=False, inferSchema=True)
+# Ensuite, renommez les colonnes si nécessaire
+#df_ml = df_ml.toDF("id_vol", "age_pilote", "distance_km", "cible_retard")
+
+# Vérification des données chargées
+print("Aperçu des données chargées :")
+df_ml.show()
+
+# Vérification du schéma (types de données)
+print("Schéma des données :")
+df_ml.printSchema()
+
+# Si vos colonnes ne s'appellent pas exactement "age_pilote" et "distance_km"
+# Affichez les noms des colonnes pour vérifier
+print("Noms des colonnes :", df_ml.columns)
+
+# PRÉPARATION POUR LE MACHINE LEARNING
+# Ajustez les noms des colonnes selon votre fichier CSV
+assembleur = VectorAssembler(
+    inputCols=["age_pilote", "distance_km"],  # Remplacez par les noms exacts de vos colonnes
+    outputCol='features'
+)
 
 df_prepare = assembleur.transform(df_ml)
-
 df_prepare.show()
-
-
-from pyspark.ml.classification import LogisticRegression
 
 # 1. Séparation des données (on met un seed pour que l'aléatoire soit le même pour nous deux)
 train_data, test_data = df_prepare.randomSplit([0.7, 0.3], seed=42)
@@ -57,7 +68,6 @@ predictions = modele.transform(test_data)
 # Observe bien les nouvelles colonnes générées à la fin du tableau (rawPrediction, probability, prediction) !
 
 predictions.show()
-
 
 # On sauvegarde le cerveau entraîné dans un dossier nommé "modele_vol_retard"
 modele.write().overwrite().save("modele_vol_retard")
