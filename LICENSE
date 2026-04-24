@@ -1,3 +1,19 @@
+# 📄 License
+
+<div align="center">
+
+**MIT License**
+Copyright © 2025 Yassine Missaoui
+
+[![License: MIT](https://img.shields.io/badge/Licence-MIT-F7B731.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+</div>
+
+---
+
+## MIT License — Full Text
+
+```
 MIT License
 
 Copyright (c) 2025 Yassine Missaoui
@@ -19,64 +35,62 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+```
 
--------------------------------------------------------------------------------
+---
 
-PROJECT:    Flight Delay Prediction — End-to-End Big Data Pipeline
-AUTHOR:     Yassine Missaoui
-REPOSITORY: https://github.com/MissaouiYassine1/flight-delay-ml-pipeline
-YEAR:       2025
+## 🔍 Résumé des droits accordés
 
--------------------------------------------------------------------------------
+| Permission | Détail |
+|------------|--------|
+| ✅ Usage commercial | Utilisation dans un contexte commercial autorisée |
+| ✅ Modification | Le code source peut être modifié librement |
+| ✅ Distribution | Le projet peut être redistribué |
+| ✅ Usage privé | Utilisation en interne sans restriction |
+| ✅ Sublicence | Possibilité d'accorder une sous-licence |
 
-THIRD-PARTY DEPENDENCIES
+| Condition | Détail |
+|-----------|--------|
+| 📋 Notice de copyright | La mention de copyright doit être conservée |
+| 📋 Notice de licence | Le texte de la licence doit être inclus |
 
-This project makes use of the following open-source libraries and frameworks,
-each governed by their respective licenses:
+| Limitation | Détail |
+|------------|--------|
+| ❌ Responsabilité | Aucune garantie ni responsabilité de l'auteur |
+| ❌ Garantie | Fourni "tel quel", sans garantie d'aucune sorte |
 
-  Apache Spark / PySpark
-    License : Apache License 2.0
-    URL     : https://spark.apache.org/
+---
 
-  FastAPI
-    License : MIT License
-    URL     : https://fastapi.tiangolo.com/
+## 📦 Dépendances Tierces
 
-  Uvicorn
-    License : BSD 3-Clause License
-    URL     : https://www.uvicorn.org/
+Ce projet utilise les bibliothèques open-source suivantes, chacune régie par sa propre licence :
 
-  Streamlit
-    License : Apache License 2.0
-    URL     : https://streamlit.io/
+| Bibliothèque | Licence | Lien |
+|--------------|---------|------|
+| Apache Spark / PySpark | Apache 2.0 | [spark.apache.org](https://spark.apache.org/) |
+| FastAPI | MIT | [fastapi.tiangolo.com](https://fastapi.tiangolo.com/) |
+| Uvicorn | BSD 3-Clause | [uvicorn.org](https://www.uvicorn.org/) |
+| Streamlit | Apache 2.0 | [streamlit.io](https://streamlit.io/) |
+| Pydantic | MIT | [docs.pydantic.dev](https://docs.pydantic.dev/) |
+| Pandas | BSD 3-Clause | [pandas.pydata.org](https://pandas.pydata.org/) |
+| NumPy | BSD 3-Clause | [numpy.org](https://numpy.org/) |
+| Requests | Apache 2.0 | [requests.readthedocs.io](https://requests.readthedocs.io/) |
 
-  Pydantic
-    License : MIT License
-    URL     : https://docs.pydantic.dev/
+> Les mentions ci-dessus sont fournies à titre informatif. Les utilisateurs de ce logiciel sont responsables du respect de toutes les licences tierces applicables.
 
-  Pandas
-    License : BSD 3-Clause License
-    URL     : https://pandas.pydata.org/
+---
 
-  NumPy
-    License : BSD 3-Clause License
-    URL     : https://numpy.org/
+## 🗄 Avertissement sur les Données
 
-  Requests
-    License : Apache License 2.0
-    URL     : https://requests.readthedocs.io/
+Le jeu de données utilisé dans ce projet (`vols_data_massive.csv`) est **entièrement généré de manière synthétique** à des fins éducatives et de démonstration uniquement.
 
-The above notices are provided for informational purposes. Users of this
-software are responsible for ensuring compliance with all applicable
-third-party licenses.
+> ⚠️ Il ne représente pas de vrais enregistrements de vols et n'est affilié à aucune compagnie aérienne, aéroport ou autorité de l'aviation civile.
 
--------------------------------------------------------------------------------
+---
 
-DATASET NOTICE
+<div align="center">
 
-The dataset used in this project (vols_data_massive.csv) is entirely
-synthetically generated for educational and demonstration purposes only.
-It does not represent real flight records and is not affiliated with any
-airline, airport, or aviation authority.
+**Projet :** [flight-delay-ml-pipeline](https://github.com/MissaouiYassine1/flight-delay-ml-pipeline)
+**Auteur :** Yassine Missaoui · **Année :** 2025
 
--------------------------------------------------------------------------------
+</div>

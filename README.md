@@ -1,64 +1,290 @@
-# ✈️ Prédiction de Retard de Vol (End-to-End Big Data Pipeline)
+# ✈️ Flight Delay Prediction — End-to-End Big Data Pipeline
 
-![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)
-![PySpark](https://img.shields.io/badge/PySpark-MLlib-E25A1C.svg)
-![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688.svg)
-![Streamlit](https://img.shields.io/badge/Streamlit-Frontend-FF4B4B.svg)
+<div align="center">
 
-## 📖 À propos du projet
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB.svg?style=for-the-badge&logo=python&logoColor=white)
+![PySpark](https://img.shields.io/badge/PySpark-MLlib-E25A1C.svg?style=for-the-badge&logo=apachespark&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688.svg?style=for-the-badge&logo=fastapi&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-Frontend-FF4B4B.svg?style=for-the-badge&logo=streamlit&logoColor=white)
+![License: MIT](https://img.shields.io/badge/Licence-MIT-F7B731.svg?style=for-the-badge)
 
-Ce projet est une application complète (End-to-End) de Machine Learning et de Big Data, conçue pour prédire si un vol subira un retard en fonction de ses caractéristiques (âge du pilote, distance du vol, etc.). 
+**Une application ML complète qui prédit les retards de vol en exploitant Apache Spark, FastAPI et Streamlit — du pipeline de données brutes jusqu'à l'interface utilisateur.**
 
-Il démontre l'intégration réussie de plusieurs technologies modernes de la Data : du traitement de données distribué à la création d'une interface utilisateur, en passant par le déploiement d'une API robuste.
+[Démo](#-utilisation) · [Installation](#-installation) · [Architecture](#-architecture) · [Contact](#-contact)
 
-## 🏗️ Architecture Technique
+</div>
 
-L'application repose sur une architecture en 3 tiers :
+---
 
-1. **Le Modèle IA (PySpark MLlib) :** Un modèle de classification (`LogisticRegression`) entraîné sur des données massives via le moteur distribué Apache Spark, capable de vectoriser les caractéristiques en temps réel.
-2. **Le Backend (FastAPI & Pydantic) :** Une API REST ultra-rapide servant de pont entre l'interface et le modèle Spark. Les données entrantes sont sécurisées et validées grâce à Pydantic.
-3. **Le Frontend (Streamlit) :** Une interface utilisateur web interactive permettant de saisir les paramètres du vol et d'afficher le résultat de l'algorithme instantanément.
+## 📋 Table des Matières
 
-## ⚙️ Prérequis et Installation
+- [À Propos](#-à-propos)
+- [Architecture](#-architecture)
+- [Technologies](#-technologies)
+- [Structure du Projet](#-structure-du-projet)
+- [Installation](#-installation)
+- [Utilisation](#-utilisation)
+- [Jeu de Données](#-jeu-de-données)
+- [Roadmap](#-roadmap)
+- [Contribution](#-contribution)
+- [Licence](#-licence)
+- [Contact](#-contact)
 
-Assurez-vous d'avoir Python 3.10 installé sur votre machine.
+---
 
-1. **Cloner le dépôt :**
-   ```bash
-   git clone https://github.com/MissaouiYassine1/flight-delay-ml-pipeline.git
-   cd flight-delay-ml-pipeline
-   
-Installer les dépendances :
+## 🚀 À Propos
 
-Bash
-pip install -r requirements.txt
-(Assurez-vous que votre environnement contient pyspark, fastapi, uvicorn, pydantic, streamlit, et requests).
+Ce projet est une **application End-to-End de Machine Learning et Big Data**, conçue pour prédire si un vol subira un retard en fonction de ses caractéristiques (âge du pilote, distance du vol, etc.).
 
-🚀 Utilisation (En local)
-Pour faire fonctionner l'application, vous devez lancer le serveur (Backend) et l'interface (Frontend) simultanément dans deux terminaux différents.
+> 💡 **Problème résolu :** Les compagnies aériennes perdent des milliards chaque année à cause des retards. Ce modèle permet d'anticiper ces retards pour une meilleure planification opérationnelle.
 
-1. Lancer l'API (FastAPI) :
-Dans le premier terminal, exécutez :
+### ✨ Points clés
 
-Bash
-python mon_api.py
-(L'API sera disponible sur http://127.0.0.1:8000 et la documentation Swagger sur /docs)
+- 🔥 **1 million de vols** traités avec Apache Spark
+- ⚡ **API REST** ultra-rapide via FastAPI
+- 🎨 **Interface web interactive** via Streamlit
+- 🧠 **Modèle LogisticRegression** (PySpark MLlib)
 
-2. Lancer l'interface (Streamlit) :
-Dans un second terminal, exécutez :
+**Public cible :** compagnies aériennes, aéroports, data scientists et développeurs souhaitant apprendre l'intégration de technologies Big Data dans une application ML.
 
-Bash
-streamlit run mon_app.py
-(L'interface s'ouvrira automatiquement dans votre navigateur sur le port 8501)
+---
 
-📁 Structure du projet
-```plaintext
-├── mon_api.py               # Serveur Backend (FastAPI + Chargement Spark)
-├── mon_app.py               # Interface Utilisateur (Streamlit)
-├── modele_vol_retard/       # Dossier contenant les poids du modèle PySpark MLlib
-├── requirements.txt         # Liste des librairies Python nécessaires
-└── README.md                # Documentation du projet
+## 🏗 Architecture
+
+L'application repose sur une architecture **3-tiers** claire et découplée :
+
+```
+┌─────────────────────┐        HTTP POST        ┌──────────────────────┐
+│  🎨 Streamlit        │ ──────────────────────► │  ⚡ FastAPI Backend   │
+│     Frontend         │ ◄────────────────────── │  (api.py)            │
+│  (app.py)            │      JSON Response       └──────────┬───────────┘
+└─────────────────────┘                                      │ Charge
+                                                             ▼
+                                                ┌──────────────────────┐
+                                                │  🧠 PySpark Model     │
+                                                │  (MLlib LR)           │
+                                                └──────────────────────┘
 ```
 
-### 👨‍💻 Auteur
-##### Yassine Missaoui
+| Couche | Technologie | Rôle |
+|--------|-------------|------|
+| 🧠 **Modèle IA** | PySpark MLlib | Classification LogisticRegression sur 1M de vols |
+| ⚡ **Backend** | FastAPI + Pydantic | API REST avec validation des données |
+| 🎨 **Frontend** | Streamlit | Interface interactive de saisie et visualisation |
+
+---
+
+## 🛠 Technologies
+
+| Catégorie | Technologies |
+|-----------|-------------|
+| **Big Data** | Apache Spark, PySpark MLlib |
+| **Backend** | FastAPI, Uvicorn, Pydantic |
+| **Frontend** | Streamlit, Requests |
+| **Data Processing** | Pandas, NumPy |
+| **Versioning** | Git, GitHub |
+| **Langage** | Python 3.10+ |
+
+---
+
+## 📁 Structure du Projet
+
+```
+flight-delay-prediction/
+│
+├── 📄 api.py                      # API FastAPI (backend)
+├── 📄 app.py                      # Interface Streamlit (frontend)
+├── 📄 ml.py                       # Script d'entraînement du modèle
+│
+├── 📓 notebooks/                  # Scripts pédagogiques
+│   ├── data.py                   # Introduction à Pandas
+│   ├── dataset.py                # Manipulation de datasets
+│   ├── gen_data.py               # Génération de données massives (1M lignes)
+│   └── spark.py                  # Premiers pas avec PySpark
+│
+├── 🤖 modele_vol_retard/          # Modèle ML sauvegardé
+│   ├── data/                     # Données transformées (ignorées par Git)
+│   └── metadata/                 # Métadonnées Spark (ignorées par Git)
+│
+├── .gitignore
+└── README.md
+```
+
+---
+
+## ⚙️ Installation
+
+### Prérequis
+
+- Python **3.10+**
+- Git
+- **4 GB RAM minimum** (8 GB recommandé pour Spark)
+
+### Étapes
+
+```bash
+# 1. Cloner le dépôt
+git clone https://github.com/MissaouiYassine1/flight-delay-ml-pipeline.git
+cd flight-delay-ml-pipeline
+
+# 2. Créer et activer un environnement virtuel
+python -m venv venv
+
+# Sur Windows
+venv\Scripts\activate
+
+# Sur Mac/Linux
+source venv/bin/activate
+
+# 3. Installer les dépendances
+pip install -r requirements.txt
+```
+
+### `requirements.txt`
+
+```txt
+pyspark
+fastapi
+uvicorn
+streamlit
+pydantic
+requests
+pandas
+numpy
+```
+
+---
+
+## 🖥 Utilisation
+
+### Étape 1 — Générer le jeu de données *(optionnel)*
+
+```bash
+python notebooks/gen_data.py
+# ✅ Génère vols_data_massive.csv avec 1 000 000 de lignes
+```
+
+### Étape 2 — Entraîner le modèle
+
+```bash
+python ml.py
+# ✅ Sauvegarde le modèle dans modele_vol_retard/
+```
+
+### Étape 3 — Lancer l'API *(Terminal 1)*
+
+```bash
+python api.py
+# ✅ API disponible sur http://127.0.0.1:8000
+# 📚 Documentation Swagger : http://127.0.0.1:8000/docs
+```
+
+### Étape 4 — Lancer l'interface *(Terminal 2)*
+
+```bash
+streamlit run app.py
+# ✅ Interface ouverte sur http://localhost:8501
+```
+
+### Étape 5 — Tester avec cURL
+
+```bash
+curl -X POST "http://127.0.0.1:8000/predictions" \
+     -H "Content-Type: application/json" \
+     -d '{"age_pilote": 45, "distance_km": 2500}'
+```
+
+**Réponse attendue :**
+
+```json
+{
+  "statut": "succès",
+  "age_pilote": 45,
+  "distance_km": 2500,
+  "prediction_retard": 1
+}
+```
+
+---
+
+## 📊 Jeu de Données
+
+Le dataset **`vols_data_massive.csv`** contient **1 000 000 de vols générés synthétiquement**.
+
+| Colonne | Type | Description |
+|---------|------|-------------|
+| `id_vol` | Integer | Identifiant unique du vol |
+| `age_pilote` | Integer | Âge du pilote (22–65 ans) |
+| `distance_km` | Integer | Distance du vol (300–5 000 km) |
+| `cible_retard` | Integer | `1` = Retard · `0` = Pas de retard |
+
+> **Règle de génération :** La probabilité de retard augmente avec la distance et pour les pilotes très jeunes (< 30 ans) ou très expérimentés (> 55 ans).
+
+---
+
+## 📍 Roadmap
+
+- [x] **Phase 1** — Génération du dataset massif (1M lignes)
+- [x] **Phase 2** — Entraînement du modèle PySpark MLlib
+- [x] **Phase 3** — Déploiement API FastAPI
+- [x] **Phase 4** — Interface Streamlit
+- [ ] **Phase 5** — Ajout de features (météo, jour de semaine, compagnie)
+- [ ] **Phase 6** — Déploiement Docker + CI/CD GitHub Actions
+- [ ] **Phase 7** — Monitoring avec MLflow
+
+---
+
+## 🤝 Contribution
+
+Toute contribution est la bienvenue ! Nous suivons le **GitHub Flow** :
+
+```bash
+# 1. Forkez le projet
+
+# 2. Créez votre branche
+git checkout -b feature/AmazingFeature
+
+# 3. Committez vos modifications
+git commit -m 'feat: add AmazingFeature'
+
+# 4. Pushez sur votre fork
+git push origin feature/AmazingFeature
+
+# 5. Ouvrez une Pull Request 🎉
+```
+
+### Standards de code
+
+- ✅ Respectez **PEP 8** pour Python
+- ✅ Commentez les fonctions complexes
+- ✅ Ajoutez des **tests** pour toute nouvelle fonctionnalité
+
+---
+
+## 📄 Licence
+
+Distribué sous la licence **MIT**. Voir [`LICENSE`](LICENSE) pour plus d'informations.
+
+---
+
+## ✉️ Contact
+
+<div align="center">
+
+**Yassine Missaoui**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/missaoui-yassine-m1y/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/MissaouiYassine1)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:yassine.missaoui@enis.tn)
+
+🔗 **Lien du projet :** [github.com/MissaouiYassine1/flight-delay-ml-pipeline](https://github.com/MissaouiYassine1/flight-delay-ml-pipeline)
+
+</div>
+
+---
+
+<div align="center">
+
+*Made with ❤️ and ☕ — Star ⭐ the repo if you found it useful!*
+
+</div>
